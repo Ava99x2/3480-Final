@@ -36,7 +36,7 @@ public class CoSuPlayerController : MonoBehaviour
         if (timer >= 10 && haswon == false)
         {
             endText.text = "Get Bashed!";
-            //GameLoader.AddScore (count)
+            GameLoader.AddScore(count);
             StartCoroutine(ByeAfterDelay(2));
 
         }
@@ -74,7 +74,7 @@ public class CoSuPlayerController : MonoBehaviour
         {
             haswon = true;
             winText.text = "Boulders Bashed!";
-            //GameLoader.AddScore(count);
+            GameLoader.AddScore(count);
         }
 
         
@@ -84,6 +84,6 @@ public class CoSuPlayerController : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         // Code to execute after the delay
-        //GameLoader.gameOn = false;
+        GameLoader.gameOn = false;
     }
 }
