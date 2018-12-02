@@ -13,8 +13,10 @@ public class CoSuPlayerController : MonoBehaviour
     private Rigidbody2D rb2d;      
     private int count;              
 
-    private float timer;
+    private float timer = 0;
     private int wholetime;
+    private bool haswon = false;
+
 
     void Start()
     {
@@ -29,6 +31,15 @@ public class CoSuPlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        timer = timer + Time.deltaTime;
+        print(timer);
+        if (timer >= 10 && haswon == false)
+        {
+            endText.text = "Get Bashed!";
+            //GameLoader.AddScore (count)
+            StartCoroutine(ByeAfterDelay(2));
+
+        }
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
@@ -61,9 +72,18 @@ public class CoSuPlayerController : MonoBehaviour
         if (count >= 7)
 
         {
+            haswon = true;
             winText.text = "Boulders Bashed!";
+            //GameLoader.AddScore(count);
         }
 
         
+    }
+    IEnumerator ByeAfterDelay(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        // Code to execute after the delay
+        //GameLoader.gameOn = false;
     }
 }
